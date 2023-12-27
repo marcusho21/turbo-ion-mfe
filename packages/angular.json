@@ -1,0 +1,40 @@
+{
+  "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "pnpm"
+  },
+  "newProjectRoot": ".",
+  "projects": {
+    "micro-frontend-utils": {
+      "projectType": "library",
+      "root": "micro-frontend-utils",
+      "sourceRoot": "micro-frontend-utils/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "micro-frontend-utils/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "micro-frontend-utils/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "micro-frontend-utils/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:jest",
+          "options": {
+            "tsConfig": "micro-frontend-utils/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        }
+      }
+    }
+  }
+}
